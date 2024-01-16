@@ -2,7 +2,7 @@
 
 set -e
 
-BUILD_DIR=${BUILD_DIR:=build/wasm-static_lib}
+BUILD_DIR=${BUILD_DIR:=build/wasm/}
 OUTPUT_DIR=${OUTPUT_DIR:=output/wasm-static_lib}
 ONNXRUNTIME_SOURCE_DIR=${ONNXRUNTIME_SOURCE_DIR:=onnxruntime}
 ONNXRUNTIME_VERSION=${ONNXRUNTIME_VERSION:=$(cat ONNXRUNTIME_VERSION)}
