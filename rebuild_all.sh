@@ -8,6 +8,6 @@ sh build-ios-static_lib.sh
 sh build-iossim-static_lib.sh
 sh build-xcframework.sh
 
-sh build-android-static_lib.sh
+sh build-android-static.sh
 
 sh build-wasm-static_lib.sh

@@ -2,6 +2,8 @@
 
 set -e
 
+source .android-env
+
 SOURCE_DIR=${SOURCE_DIR:=static_lib}
 BUILD_DIR=${BUILD_DIR:=build/android/}
 OUTPUT_DIR=${OUTPUT_DIR:=output/android_static_lib}
@@ -10,7 +12,7 @@ ONNXRUNTIME_VERSION=${ONNXRUNTIME_VERSION:=$(cat ONNXRUNTIME_VERSION)}
 CMAKE_OPTIONS=$CMAKE_OPTIONS
 CMAKE_BUILD_OPTIONS=$CMAKE_BUILD_OPTIONS
 
-ANDROID_NDK_DIR=$1
+#ANDROID_NDK_DIR=$1
 
 CPU_COUNT=$(sysctl -n hw.physicalcpu)
 PARALLEL_JOB_COUNT=${PARALLEL_JOB_COUNT:=$CPU_COUNT}
@@ -38,9 +40,9 @@ build_abi() {
       -D CMAKE_INSTALL_PREFIX=$OUTPUT_DIR/$ANDROID_ABI \
       -D ONNXRUNTIME_SOURCE_DIR=$(pwd)/$ONNXRUNTIME_SOURCE_DIR \
       -D CMAKE_TOOLCHAIN_FILE="${ANDROID_NDK_DIR}/build/cmake/android.toolchain.cmake" \
-      -D ANDROID_PLATFORM="android-27" \
+      -D ANDROID_PLATFORM="android-${ANDROID_MIN_SDK}" \
       -D ANDROID_ABI=$ANDROID_ABI \
-      -D ANDROID_MIN_SDK="27" \
+      -D ANDROID_MIN_SDK=$ANDROID_MIN_SDK \
       -D onnxruntime_EXTENDED_MINIMAL_BUILD="ON" \
       -D onnxruntime_DISABLE_ML_OPS="ON" \
       $CMAKE_OPTIONS
